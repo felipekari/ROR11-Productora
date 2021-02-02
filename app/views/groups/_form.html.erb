@@ -1,0 +1,39 @@
+<%= form_with(model: group, local: true) do |form| %>
+  <% if group.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
+
+      <ul>
+      <% group.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name, "Nombre" %>
+    <%= form.text_field :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :gender, "Genero" %>
+    <%= form.select :gender, Group.genders.keys %>
+  </div>
+
+  <h3>Integrantes</h3>
+  <div id='crews'>
+    <%= form.fields_for :crews do |crew| %>
+      <%= render 'crew_fields', :f => crew %>
+    <% end %>
+    <div class='links'>
+      <br>
+      <%= link_to_add_association 'Agregar integrante', form, :crews %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <br>
+    <%= form.submit "Enviar" %>
+  </div>
+<% end %>

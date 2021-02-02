@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Conciertos de <%= @group.name %></h1>
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th>Fecha</th>
+      <th>Duracion (Minutos)</th>
+      <th>Asistentes</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @concerts.each do |concert| %>
+      <tr>
+        <td><%= concert.date %></td>
+        <td><%= concert.length %></td>
+        <td><%= concert.attendants %></td>
+        <td><%= link_to 'Show', group_concert_path(@group, concert) %></td>
+        <td><%= link_to 'Edit', edit_group_concert_path(@group, concert) %></td>
+        <td><%= link_to 'Destroy', group_concert_path(@group, concert), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Nuevo concierto', new_group_concert_path(@group) %>
+<%= link_to 'Volver', groups_path %>

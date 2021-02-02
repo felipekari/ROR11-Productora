@@ -1,0 +1,46 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Grupos</h1>
+
+<table class="table table-hover">
+  <thead class="thead-dark">
+    <tr>
+      <th>Nombre</th>
+      <th>Debut</th>
+      <th>Genero</th>
+      <th>N° de integrantes</th>
+      <th>Integrantes</th>
+      <th>Conciertos</th>
+      <th>Total de asistentes</th>
+      <th colspan="4"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @groups.each do |group| %>
+      <tr>
+        <td><%= group.name %></td>
+        <td><%= group.debutdate %></td>
+        <td><%= group.gender %></td>
+        <td><%= group.crewcount %></td>
+        <td>
+          <% group.crews.each do |crew| %>
+            <ul>
+              <li><%= crew.name %></li>
+            </ul>
+          <% end %>
+        </td>
+        <td><%= group.concertcount %></td>
+        <td><%= group.attendantcount %></td>
+        <td><%= link_to 'Concerts', group_concerts_path(group.id) %></td>
+        <td><%= link_to 'Show', group %></td>
+        <td><%= link_to 'Edit', edit_group_path(group) %></td>
+        <td><%= link_to 'Destroy', group, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Group', new_group_path %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2021-01-31
+  length: 1
+  attendants: 1
+  group: one
+
+two:
+  date: 2021-01-31
+  length: 1
+  attendants: 1
+  group: two
